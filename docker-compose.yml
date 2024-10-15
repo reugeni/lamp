@@ -1,0 +1,44 @@
+services:
+  site1:
+    build:
+      context: ./php74
+      dockerfile: Dockerfile
+    volumes:
+      - "./site1/conf:/etc/apache2/sites-enabled/site1.conf"
+      - "./site1/html:/var/www/site1"
+    ports:
+      - 81:80
+    depends_on:
+      - db
+    restart: "unless-stopped"
+  site2:
+    build:
+      context: ./php81
+      dockerfile: Dockerfile
+    volumes:
+      - "./site2/conf:/etc/apache2/sites-enabled/site2.conf"
+      - "./site2/html:/var/www/site2"
+    ports:
+      - 82:80
+    depends_on:
+      - db
+    restart: "unless-stopped"
+  db:
+    #container_name: db
+    image: mariadb:10.6
+    restart: "unless-stopped"
+    env_file:
+      - ./.env
+    volumes:
+      - "./mysql:/var/lib/mysql"
+    ports:
+      - 13306:3306
+  adm:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - '9999:80'
+    environment:
+      PMA_HOST: db
+    depends_on:
+      - db
+    restart: "unless-stopped"

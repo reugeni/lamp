@@ -1,0 +1,5 @@
+#copyr/rename this in .env
+#MYSQL_DATABASE=yourdbname
+#MYSQL_PASSWORD=yourdbpassword
+#MYSQL_USER=yourdbuser
+MYSQL_ROOT_PASSWORD=yourrootpassword
