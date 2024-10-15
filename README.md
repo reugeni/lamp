@@ -12,8 +12,10 @@ site1 --+            # 1st site
 site2 --+            # 2st site
         +-- conf     # http config file
         +-- html     # your app source
-mysql               # store your database data
+mysql                # store your database data
 ```
 
 ## Notes
-Clone/Edit sites(s) folder(s) and docker-compose.yml
+- Clone/Edit sites(s) folder(s) and docker-compose.yml
+- Create .env file based on dotenv.sample
+- Create folder mysql to store your database data
